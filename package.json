@@ -1,0 +1,18 @@
+{
+  "name": "shreeyam-portfolio-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend bridge for the supplied SHREEYAM_OS portfolio frontend.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "nodemailer": "^10.0.1"
+  }
+}

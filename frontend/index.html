@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHREEYAM DAHIKAR // AI/ML Developer & Creative Technologist</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. RESET & CORE TOKENS (CYBERSIGILISM DS)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Palette: Void & Engraved Metals */
+      --bg-void: #030304;
+      --bg-chamber: #070709;
+      --bg-surface: #0c0d10;
+      --bg-elevated: #121419;
+
+      --line-primary: #e6e8ec;
+      --line-secondary: #717782;
+      --line-ghost: rgba(230, 232, 236, 0.12);
+      --line-faint: rgba(230, 232, 236, 0.05);
+
+      --text-main: #dce0e6;
+      --text-muted: #888f9c;
+      --text-dim: #505662;
+
+      /* Functional Accents */
+      --accent-active: #ffffff;
+      --accent-success: #52e0aa;
+      --accent-warning: #e0ac52;
+      --accent-error: #e05252;
+
+      /* Typography */
+      --font-display: 'Cinzel Decorative', 'Cinzel', serif;
+      --font-serif: 'Cinzel', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition-deliberate: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    html {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.8) 0%, transparent 80%);
+      background-attachment: fixed;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    ::selection {
+      background: var(--line-primary);
+      color: var(--bg-void);
+    }
+
+    :focus-visible {
+      outline: 1px solid var(--line-primary);
+      outline-offset: 4px;
+    }
+
+    /* ==========================================================================
+       2. TYPOGRAPHY SYSTEM
+       ========================================================================== */
+    h1, h2, h3, h4, .display-type {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--line-primary);
+    }
+
+    .type-hero {
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      line-height: 1.1;
+      text-align: left;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .type-subhero {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: var(--line-secondary);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+
+    .type-section {
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .type-section::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line-secondary), transparent);
+    }
+
+    .type-body {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 72ch;
+    }
+
+    .type-micro {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       3. FRAMES & CONTAINERS
+       ========================================================================== */
+    .void-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .sigil-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 4rem 0;
+      opacity: 0.6;
+    }
+
+    .sigil-divider::before, .sigil-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-secondary), transparent);
+    }
+
+    .ornamental-frame {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--line-ghost);
+      padding: 2rem;
+      transition: border-color 0.4s var(--transition-deliberate);
+    }
+
+    .ornamental-frame:hover {
+      border-color: rgba(230, 232, 236, 0.3);
+    }
+
+    .frame-corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      stroke: var(--line-secondary);
+      fill: none;
+    }
+
+    .frame-corner.top-left { top: -1px; left: -1px; }
+    .frame-corner.top-right { top: -1px; right: -1px; transform: scaleX(-1); }
+    .frame-corner.bottom-left { bottom: -1px; left: -1px; transform: scaleY(-1); }
+    .frame-corner.bottom-right { bottom: -1px; right: -1px; transform: scale(-1); }
+
+    .arch-panel {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--line-ghost);
+      border-top: none;
+      padding: 2.5rem 2rem 2rem 2rem;
+      clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% 100%, 0% 100%);
+    }
+
+    .arch-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--line-secondary);
+    }
+
+    /* ==========================================================================
+       4. NAVIGATION COMPONENTS
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(3, 3, 4, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-ghost);
+      padding: 1rem 0;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: var(--line-primary);
+    }
+
+    .brand-mark svg {
+      width: 28px;
+      height: 28px;
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-item a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--transition-fast);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-item a:hover, .nav-item.active a {
+      color: var(--line-primary);
+    }
+
+    .nav-item a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0%;
+      height: 1px;
+      background: var(--line-primary);
+      transition: all 0.3s var(--transition-deliberate);
+      transform: translateX(-50%);
+    }
+
+    .nav-item a:hover::after, .nav-item.active a::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       5. BUTTON COMPONENTS
+       ========================================================================== */
+    .sigil-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: transparent;
+      border: 1px solid var(--line-secondary);
+      color: var(--line-primary);
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s var(--transition-deliberate);
+      text-decoration: none;
+    }
+
+    .sigil-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transition: left 0.6s var(--transition-deliberate);
+    }
+
+    .sigil-btn:hover::before {
+      left: 100%;
+    }
+
+    .sigil-btn:hover {
+      border-color: var(--line-primary);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .sigil-btn-primary {
+      background: var(--line-primary);
+      color: var(--bg-void);
+      border-color: var(--line-primary);
+      font-weight: 500;
+    }
+
+    .sigil-btn-primary:hover {
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+    }
+
+    .sigil-btn-icon {
+      padding: 0.75rem;
+    }
+
+    /* ==========================================================================
+       6. HERO & SIDE-BY-SIDE SPLIT LAYOUT
+       ========================================================================== */
+    .hero-section {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .hero-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-sigil-container {
+      position: relative;
+      width: clamp(280px, 42vw, 520px);
+      height: clamp(280px, 42vw, 520px);
+      margin: 0 auto 2rem auto;
+      perspective: 1000px;
+      cursor: crosshair;
+    }
+
+    .hero-sigil-bg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.12));
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      transition: filter 0.3s ease;
+    }
+
+    .hero-sigil-container:hover .hero-sigil-bg {
+      filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.25));
+    }
+
+    .sigil-layer-outer, .sigil-layer-inner {
+      transform-origin: center;
+      transition: transform 0.1s linear;
+    }
+
+    /* ==========================================================================
+       7. CARDS & GRID LAYOUTS
+       ========================================================================== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .fragment-card {
+      position: relative;
+      background: var(--bg-chamber);
+      border-left: 2px solid var(--line-secondary);
+      padding: 1.8rem;
+      transition: transform 0.3s var(--transition-fast), border-color 0.3s;
+    }
+
+    .fragment-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 25px; height: 25px;
+      border-top: 1px solid var(--line-secondary);
+      border-right: 1px solid var(--line-secondary);
+    }
+
+    .fragment-card:hover {
+      transform: translateY(-3px);
+      border-left-color: var(--line-primary);
+    }
+
+    /* ==========================================================================
+       8. PROJECT EXPLORER & CONNECTED FOLDER STACK (PATCH V6)
+       ========================================================================== */
+    .project-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--line-ghost);
+      padding: 1rem 1.5rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      background: transparent;
+      border: 1px solid var(--line-ghost);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-pill.active, .filter-pill:hover {
+      border-color: var(--line-primary);
+      color: var(--line-primary);
+      background: var(--line-faint);
+    }
+
+    /* Connected Physical Folder Stack Patch Layout */
+    .projects-split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center; /* Vertically center folder stack and description panel */
+      min-height: 480px;
+    }
+
+    .projects-stack-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .projects-stack {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      height: 380px;
+    }
+
+    /* Integrated Folder Silhouette & Overlap Math */
+    .project-folder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% - 84px);
+      height: 250px;
+      background: var(--bg-chamber);
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding: 0;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      outline: none;
+      
+      /* Folder Silhouette Path (Tab -> Diagonal -> Main Body) */
+      clip-path: polygon(
+        0% 0%, 
+        140px 0%, 
+        165px 22px, 
+        100% 22px, 
+        100% 100%, 
+        0% 100%
+      );
+
+      /* Transition parameters for physical movement */
+      transition: transform 0.5s var(--transition-deliberate), 
+                  z-index 0.5s var(--transition-deliberate),
+                  filter 0.5s var(--transition-deliberate),
+                  border-color 0.3s ease;
+
+      /* Restrained, soft physical layer shadow */
+      filter: drop-shadow(0px -6px 10px rgba(0, 0, 0, 0.85));
+    }
+
+    .project-folder-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--line-ghost);
+      padding: 0.6rem 1.2rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .project-folder.active .project-folder-inner {
+      border-color: var(--line-primary);
+      background: var(--bg-chamber);
+    }
+
+    .project-folder:hover:not(.active) .project-folder-inner {
+      border-color: var(--line-secondary);
+    }
+
+    /* Stack Depth Position Rules: x = baseX + offset, y = baseY - offset */
+    .project-folder.depth-0 {
+      transform: translate(0px, 114px);
+      z-index: 10;
+      filter: drop-shadow(0px -10px 18px rgba(0, 0, 0, 0.95));
+    }
+
+    .project-folder.depth-1 {
+      transform: translate(28px, 76px);
+      z-index: 9;
+      filter: drop-shadow(0px -8px 14px rgba(0, 0, 0, 0.85));
+    }
+
+    .project-folder.depth-2 {
+      transform: translate(56px, 38px);
+      z-index: 8;
+      filter: drop-shadow(0px -6px 10px rgba(0, 0, 0, 0.75));
+    }
+
+    .project-folder.depth-3 {
+      transform: translate(84px, 0px);
+      z-index: 7;
+      filter: drop-shadow(0px -4px 8px rgba(0, 0, 0, 0.65));
+    }
+
+    .folder-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .folder-tab-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      line-height: 1;
+    }
+
+    .project-folder.active .folder-tab-label {
+      color: var(--accent-success);
+    }
+
+    .folder-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--line-primary);
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .folder-short-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+      display: none;
+      max-width: 95%;
+    }
+
+    .project-folder.active .folder-short-desc {
+      display: block;
+    }
+
+    .folder-active-tags {
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .project-folder.active .folder-active-tags {
+      display: flex;
+    }
+
+    /* Right Side Project Details Panel */
+    .project-detail-panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tag-cloud {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .tech-tag {
+      font-size: 0.65rem;
+      border: 1px solid var(--line-ghost);
+      padding: 0.15rem 0.5rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 900px) {
+      .projects-split-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .projects-stack-wrapper {
+        height: 380px;
+      }
+      .projects-stack {
+        max-width: 100%;
+      }
+    }
+
+    /* ==========================================================================
+       9. SKILLS MATRIX & INSPECTOR
+       ========================================================================== */
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .skills-wrapper { grid-template-columns: 1fr; }
+    }
+
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .skill-node {
+      background: var(--bg-chamber);
+      border: 1px solid var(--line-ghost);
+      padding: 0.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .skill-node:hover, .skill-node.selected {
+      border-color: var(--line-primary);
+      background: var(--bg-surface);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-inspector {
+      background: var(--bg-surface);
+      border: 1px solid var(--line-secondary);
+      padding: 1.5rem;
+      position: sticky;
+      top: 90px;
+      height: fit-content;
+    }
+
+    /* ==========================================================================
+       10. TIMELINE & ACHIEVEMENTS
+       ========================================================================== */
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 7px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--line-primary), var(--line-ghost));
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 4px;
+      width: 15px;
+      height: 15px;
+      background: var(--bg-void);
+      border: 1px solid var(--line-primary);
+      transform: rotate(45deg);
+    }
+
+    .timeline-node.active::before {
+      background: var(--line-primary);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .metric-block {
+      background: var(--bg-chamber);
+      border: 1px solid var(--line-ghost);
+      padding: 1.5rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--line-primary);
+      margin: 0.5rem 0;
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       11. DEVELOPER TERMINAL
+       ========================================================================== */
+    .terminal-window {
+      background: #020203;
+      border: 1px solid var(--line-secondary);
+      font-family: var(--font-mono);
+      padding: 1.5rem;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line-ghost);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    .terminal-body {
+      min-height: 180px;
+      max-height: 280px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .terminal-line {
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: var(--line-primary);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      width: 100%;
+      outline: none;
+    }
+
+    /* ==========================================================================
+       12. FORM COMPONENTS
+       ========================================================================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      background: var(--bg-chamber);
+      border: 1px solid var(--line-ghost);
+      color: var(--line-primary);
+      padding: 0.8rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      transition: all 0.3s var(--transition-fast);
+      width: 100%;
+    }
+
+    .form-control:focus {
+      border-color: var(--line-primary);
+      background: var(--bg-surface);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    /* ==========================================================================
+       13. MODAL & TOAST SYSTEM
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(3, 3, 4, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--transition-deliberate);
+    }
+
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-chamber {
+      background: var(--bg-surface);
+      border: 1px solid var(--line-secondary);
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.4s var(--transition-deliberate);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-overlay.is-open .modal-chamber {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .cmd-palette {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      width: 90%;
+      max-width: 600px;
+      background: var(--bg-chamber);
+      border: 1px solid var(--line-primary);
+      z-index: 2000;
+      padding: 1rem;
+      box-shadow: 0 0 50px rgba(0,0,0,0.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s var(--transition-deliberate);
+    }
+
+    .cmd-palette.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .cmd-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line-ghost);
+      color: var(--line-primary);
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      padding: 0.8rem 0;
+      outline: none;
+    }
+
+    .cmd-results {
+      list-style: none;
+      margin-top: 1rem;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .cmd-results li {
+      padding: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cmd-results li:hover {
+      background: var(--line-faint);
+      color: var(--line-primary);
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 360px;
+    }
+
+    .toast-item {
+      background: var(--bg-chamber);
+      border: 1px solid var(--line-secondary);
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    /* ==========================================================================
+       14. FOOTER & MEDIA RESPONSIVENESS
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--line-ghost);
+      padding: 4rem 0 3rem 0;
+      margin-top: 6rem;
+      background: var(--bg-chamber);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line-faint);
+      padding-top: 2rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .type-hero { font-size: 2.2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global SVG Definitions -->
+  <svg style="display: none;">
+    <defs>
+      <g id="sigil-core">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 2"/>
+        <path d="M50 0 L50 100 M0 50 L100 50" stroke="currentColor" stroke-width="0.5"/>
+        <path d="M25 25 L75 75 M75 25 L25 75" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4"/>
+        <path d="M50 4 Q35 25 50 46 Q65 25 50 4 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M50 96 Q35 75 50 54 Q65 75 50 96 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M4 50 Q25 35 46 50 Q25 65 4 50 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M96 50 Q75 35 54 50 Q75 65 96 50 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+        <polygon points="50,15 85,50 50,85 15,50" fill="none" stroke="currentColor" stroke-width="0.75"/>
+      </g>
+      <g id="sigil-corner">
+        <path d="M0,0 L16,0 L16,2 L2,2 L2,16 L0,16 Z" fill="currentColor"/>
+        <path d="M4,4 L12,4 L12,5 L5,5 L5,12 L4,12 Z" fill="currentColor"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="void-container nav-wrapper">
+      <a href="#hero" class="brand-mark">
+        <svg viewBox="0 0 100 100"><use href="#sigil-core"/></svg>
+        <span class="brand-title">SHREEYAM // OS</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item active"><a href="#hero">Overview</a></li>
+          <li class="nav-item"><a href="#about">About</a></li>
+          <li class="nav-item"><a href="#skills">Skills</a></li>
+          <li class="nav-item"><a href="#projects">Projects</a></li>
+          <li class="nav-item"><a href="#exploring">Exploring</a></li>
+          <li class="nav-item"><a href="#journey">Journey</a></li>
+          <li class="nav-item"><a href="#terminal">Terminal</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="sigil-btn sigil-btn-icon" id="cmd-toggle" title="System Search (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="#contact" class="sigil-btn sigil-btn-primary"><span>Initiate</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section (Side-by-Side Split Layout) -->
+    <section class="hero-section void-container" id="hero">
+      <div class="hero-split-grid">
+        <!-- Text Column (Left) -->
+        <div class="hero-text-content">
+          <p class="type-micro">// SANDIP UNIVERSITY, NASHIK // B.TECH AIML 2ND YEAR</p>
+          <h1 class="type-hero">SHREEYAM DAHIKAR</h1>
+          <h2 class="type-subhero">AI/ML Developer & Computer Vision Enthusiast</h2>
+          
+          <p class="type-body" style="margin-top: 1.5rem;">
+            Building practical AI systems, computer vision interfaces, gesture-driven software, and experimental technical models at the intersection of physical and digital worlds.
+          </p>
+
+          <div class="hero-actions" style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
+            <a href="#projects" class="sigil-btn sigil-btn-primary">
+              <span>Explore Projects</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#skills" class="sigil-btn"><span>View Skills</span></a>
+            <a href="#about" class="sigil-btn"><span>About Me</span></a>
+            <a href="javascript:void(0)" onclick="triggerToast('Downloading Resume Placeholder...', 'info')" class="sigil-btn"><span>Download Resume</span></a>
+          </div>
+        </div>
+
+        <!-- Sigil Visual Column (Right) -->
+        <div class="hero-sigil-container" id="sigil-container">
+          <svg class="hero-sigil-bg" id="hero-sigil-svg" viewBox="0 0 100 100">
+            <g class="sigil-layer-outer" id="sigil-layer-outer">
+              <circle cx="50" cy="50" r="48" fill="none" stroke="var(--line-primary)" stroke-width="0.5"/>
+              <circle cx="50" cy="50" r="44" fill="none" stroke="var(--line-secondary)" stroke-width="0.5" stroke-dasharray="3 3"/>
+              <polygon points="50,2 98,50 50,98 2,50" fill="none" stroke="var(--line-secondary)" stroke-width="0.5"/>
+            </g>
+            <g class="sigil-layer-inner" id="sigil-layer-inner">
+              <use href="#sigil-core" style="color: var(--line-primary);"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 2. About Section -->
+    <section class="void-container" id="about" style="padding: 2rem 0;">
+      <h2 class="type-section">01 // ABOUT & IDENTITY</h2>
+      <div class="card-grid" style="margin-top: 2rem;">
+        <div class="ornamental-frame">
+          <svg class="frame-corner top-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+          <svg class="frame-corner top-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+          <svg class="frame-corner bottom-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+          <svg class="frame-corner bottom-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+
+          <p class="type-micro">// ACADEMIC FOUNDATION</p>
+          <h3 style="margin: 0.5rem 0 1rem 0;">EXPERIMENTAL BUILDER</h3>
+          <p class="type-body">
+            I am a second-year B.Tech Artificial Intelligence & Machine Learning student at Sandip University, Nashik. My approach relies on turning foundational concepts into working prototypes. I concentrate on computer vision pipelines, Python-driven automation, and gesture-based human-computer interaction.
+          </p>
+        </div>
+
+        <div class="arch-panel">
+          <p class="type-micro">// CORE CHARACTERISTICS</p>
+          <h3 style="margin: 0.5rem 0 1rem 0;">TECHNICAL PROFILE</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="type-body">
+            <div>✦ Curious Learner</div>
+            <div>✦ Vision Enthusiast</div>
+            <div>✦ Practical Engineer</div>
+            <div>✦ Creative Technologist</div>
+            <div>✦ Problem Solver</div>
+            <div>✦ Python Specialist</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 3. Skills Matrix -->
+    <section class="void-container" id="skills" style="padding: 2rem 0;">
+      <h2 class="type-section">02 // INTERACTIVE SKILLS MATRIX</h2>
+      <p class="type-body" style="margin-bottom: 2rem;">Select any technical node below to inspect related projects and status.</p>
+
+      <div class="skills-wrapper">
+        <div id="skills-matrix-container">
+          <!-- Dynamically Rendered by JS -->
+        </div>
+
+        <div class="skill-inspector" id="skill-inspector">
+          <p class="type-micro">// NODE INSPECTOR</p>
+          <h3 id="inspect-name" style="margin: 0.5rem 0; color: var(--line-primary);">SELECT A SKILL</h3>
+          <p class="type-micro" id="inspect-cat" style="color: var(--line-secondary); margin-bottom: 1rem;">CATEGORY: ---</p>
+          <p class="type-body" id="inspect-desc" style="font-size: 0.85rem; margin-bottom: 1.5rem;">Click any skill block in the matrix to view parameters, projects, and learning state.</p>
+          
+          <div id="inspect-metrics" style="display: none;">
+            <p class="type-micro">PROFICIENCY ESTIMATE [DEMO]</p>
+            <div style="background: var(--bg-chamber); border: 1px solid var(--line-ghost); height: 6px; margin: 0.4rem 0 1rem 0;">
+              <div id="inspect-bar" style="height: 100%; background: var(--line-primary); width: 0%;"></div>
+            </div>
+            <p class="type-micro">RELATED PROJECTS:</p>
+            <div id="inspect-projects" class="tag-cloud"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 4. Projects Section (CONNECTED PHYSICAL FOLDER STACK PATCH V6) -->
+    <section class="void-container" id="projects" style="padding: 2rem 0;">
+      <h2 class="type-section">03 // PROJECT RELICS & EXPLORER</h2>
+      
+      <div class="project-filter-bar">
+        <div class="filter-pills" id="filter-pills">
+          <button class="filter-pill active" onclick="filterProjects('All', this)">ALL</button>
+          <button class="filter-pill" onclick="filterProjects('Computer Vision', this)">COMPUTER VISION</button>
+          <button class="filter-pill" onclick="filterProjects('Python', this)">PYTHON</button>
+          <button class="filter-pill" onclick="filterProjects('AI / ML', this)">AI / ML</button>
+          <button class="filter-pill" onclick="filterProjects('Web', this)">WEB</button>
+        </div>
+        <p class="type-micro" id="project-count-label">SHOWING 4 PROJECTS</p>
+      </div>
+
+      <!-- Split Layout: Connected Physical Folder Stack (LEFT) vs Project Details (RIGHT) -->
+      <div class="projects-split-layout">
+        
+        <!-- Connected Overlapping Folder Stack -->
+        <div class="projects-stack-wrapper">
+          <div class="projects-stack" id="projects-stack-container">
+            <!-- Dynamically Rendered Connected Folder Stack -->
+          </div>
+        </div>
+
+        <!-- Vertically Centered Right Description Panel -->
+        <div class="project-detail-panel">
+          <div class="ornamental-frame" id="active-project-detail">
+            <svg class="frame-corner top-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+            <svg class="frame-corner top-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+            <svg class="frame-corner bottom-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+            <svg class="frame-corner bottom-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+
+            <!-- Active Project Full Content Injected Here -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 5. Currently Exploring & Highlights -->
+    <section class="void-container" id="exploring" style="padding: 2rem 0;">
+      <h2 class="type-section">04 // EXPLORING & METRICS</h2>
+      
+      <div class="metrics-grid" style="margin-bottom: 2.5rem;">
+        <div class="metric-block">
+          <p class="type-micro">PROJECTS BUILT [DEMO]</p>
+          <div class="metric-value">8+</div>
+          <p class="type-micro" style="color: var(--accent-success);">✦ Active Repositories</p>
+        </div>
+        <div class="metric-block">
+          <p class="type-micro">TECH EXPLORED [DEMO]</p>
+          <div class="metric-value">15+</div>
+          <p class="type-micro" style="color: var(--text-muted);">Languages & Frameworks</p>
+        </div>
+        <div class="metric-block">
+          <p class="type-micro">CV EXPERIMENTS [DEMO]</p>
+          <div class="metric-value">5+</div>
+          <p class="type-micro" style="color: var(--accent-success);">✦ Gesture Systems</p>
+        </div>
+      </div>
+
+      <h3 class="type-micro" style="margin-bottom: 1rem;">// ACTIVE LEARNING VECTORS</h3>
+      <div class="card-grid">
+        <div class="fragment-card">
+          <p class="type-micro" style="color: var(--accent-success);">[EXPLORING]</p>
+          <h4 style="margin: 0.4rem 0;">Advanced Computer Vision</h4>
+          <p class="type-body">Real-time object tracking, landmark estimation, SAM models, and low-latency camera stream processing pipelines.</p>
+        </div>
+        <div class="fragment-card">
+          <p class="type-micro" style="color: var(--accent-warning);">[BUILDING]</p>
+          <h4 style="margin: 0.4rem 0;">Intelligent HCI Systems</h4>
+          <p class="type-body">Replacing physical input interfaces with vision-based gesture triggers and touchless controller algorithms.</p>
+        </div>
+        <div class="fragment-card">
+          <p class="type-micro" style="color: var(--text-muted);">[LEARNING]</p>
+          <h4 style="margin: 0.4rem 0;">Generative AI & Agents</h4>
+          <p class="type-body">Multi-agent AI collaborations and automated prompt/design synthesis for domain-specific applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 6. Learning Journey Timeline -->
+    <section class="void-container" id="journey" style="padding: 2rem 0;">
+      <h2 class="type-section">05 // LEARNING CHRONOLOGY</h2>
+      <div class="timeline-container" style="margin-top: 2rem;">
+        <div class="timeline-node active">
+          <p class="type-micro">2026 // PRESENT</p>
+          <h3 style="font-size: 1.1rem; color: var(--line-primary);">B.TECH AIML SECOND YEAR</h3>
+          <p class="type-body" style="margin-top: 0.3rem;">Sandip University, Nashik. Constructing vision-based volume controllers, gesture mice, and interactive AI application prototypes.</p>
+        </div>
+        <div class="timeline-node">
+          <p class="type-micro">2025 // EXPLORATION</p>
+          <h3 style="font-size: 1.1rem; color: var(--line-primary);">FOUNDATIONAL AI & COMPUTER VISION</h3>
+          <p class="type-body" style="margin-top: 0.3rem;">Deepened knowledge in Python, OpenCV framework, image processing techniques, and web integration basics.</p>
+        </div>
+        <div class="timeline-node">
+          <p class="type-micro">2024 // INCEPTION</p>
+          <h3 style="font-size: 1.1rem; color: var(--line-primary);">PROGRAMMING PRIMITIVES</h3>
+          <p class="type-body" style="margin-top: 0.3rem;">Initiated formal studies in C, Python syntax, logic building, and introductory software engineering practices.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 7. Interactive Terminal -->
+    <section class="void-container" id="terminal" style="padding: 2rem 0;">
+      <h2 class="type-section">06 // DEVELOPER TERMINAL INTERFACE</h2>
+      <p class="type-body" style="margin-bottom: 1.5rem;">Execute system commands to query portfolio parameters directly.</p>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span>SHREEYAM_OS // CLI v2.0.4</span>
+          <span>STATUS: ONLINE</span>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-line" style="color: var(--text-dim);">Type 'help' to inspect available system commands.</div>
+        </div>
+        <div class="terminal-input-row">
+          <span style="color: var(--line-primary);">&gt;</span>
+          <input type="text" class="terminal-input" id="terminal-input" placeholder="enter command..." onkeydown="handleTerminalCommand(event)">
+        </div>
+      </div>
+    </section>
+
+    <div class="void-container"><div class="sigil-divider"><svg width="24" height="24" viewBox="0 0 100 100"><use href="#sigil-core"/></svg></div></div>
+
+    <!-- 8. Contact Section -->
+    <section class="void-container" id="contact" style="padding: 2rem 0;">
+      <h2 class="type-section">07 // INITIATE TRANSMISSION</h2>
+      <p class="type-body" style="margin-bottom: 2.5rem;">
+        Let's build something intelligent. Reach out regarding computer vision projects, AI experiments, or collaboration opportunities.
+      </p>
+
+      <div class="ornamental-frame">
+        <svg class="frame-corner top-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner top-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner bottom-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner bottom-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+
+        <form class="form-grid" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Your name or organization" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="your-email@example.com" required>
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-control" placeholder="AI Project Collaboration / Computer Vision Experiment" required>
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label class="form-label">Transmission Message</label>
+            <textarea class="form-control" rows="4" placeholder="Detail your project or query..." required></textarea>
+          </div>
+          <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+            <button type="submit" class="sigil-btn sigil-btn-primary"><span>Transmit Signal</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Detail Modal Chamber -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-chamber">
+      <button class="modal-close" onclick="closeProjectModal()">✕</button>
+      <p class="type-micro" id="modal-cat">// PROJECT CHAMBER</p>
+      <h2 id="modal-title" style="margin: 0.5rem 0 1rem 0;">PROJECT NAME</h2>
+      
+      <div id="modal-content" class="type-body" style="font-size: 0.9rem; line-height: 1.7;">
+        <!-- Filled by JS -->
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
+        <a id="modal-github" href="#" target="_blank" class="sigil-btn"><span>GitHub Repo [Demo]</span></a>
+        <button class="sigil-btn sigil-btn-primary" onclick="closeProjectModal()"><span>Close Chamber</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Overlay -->
+  <div class="cmd-palette" id="cmd-palette">
+    <input type="text" class="cmd-input" placeholder="Type a command or jump to section..." id="cmd-input" onkeyup="filterCmdResults()">
+    <ul class="cmd-results" id="cmd-results">
+      <li onclick="navigateTo('#hero')"><span>Navigate: Hero Overview</span> <span class="type-micro">GOTO</span></li>
+      <li onclick="navigateTo('#about')"><span>Navigate: About Shreeyam</span> <span class="type-micro">GOTO</span></li>
+      <li onclick="navigateTo('#skills')"><span>Navigate: Interactive Skills</span> <span class="type-micro">GOTO</span></li>
+      <li onclick="navigateTo('#projects')"><span>Navigate: Projects Explorer</span> <span class="type-micro">GOTO</span></li>
+      <li onclick="navigateTo('#terminal')"><span>Navigate: Developer CLI</span> <span class="type-micro">GOTO</span></li>
+      <li onclick="navigateTo('#contact')"><span>Navigate: Transmission / Contact</span> <span class="type-micro">GOTO</span></li>
+    </ul>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="void-container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
+        <div>
+          <a href="#hero" class="brand-mark">
+            <svg viewBox="0 0 100 100"><use href="#sigil-core"/></svg>
+            <span class="brand-title">SHREEYAM DAHIKAR</span>
+          </a>
+          <p class="type-body" style="font-size: 0.85rem; margin-top: 0.5rem;">
+            B.Tech AIML Student • Sandip University, Nashik • AI/ML Developer
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="https://github.com/Shreeyam-D" target="_blank" class="type-micro" style="color: var(--line-primary); text-decoration: none;">GitHub </a>
+          <a href="https://linkedin.com/in/shreeyam-dahikar-133a5a385/" target="_blank" class="type-micro" style="color: var(--line-primary); text-decoration: none;">LinkedIn </a>
+          <a href="mailto:shreeyamdahikar@gmail.com" class="type-micro" style="color: var(--line-primary); text-decoration: none;">Email </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 SHREEYAM DAHIKAR. BUILT WITH CYBERSIGILISM UI DESIGN SYSTEM.</span>
+        <span>70% VOID / 20% FUNCTION / 10% ORNAMENT</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       1. CENTRALIZED PORTFOLIO DATA
+       ========================================================================== */
+    const portfolioData = {
+      personal: {
+        name: "Shreeyam Dahikar",
+        title: "B.Tech AIML Student & AI/ML Developer",
+        institution: "Sandip University, Nashik",
+        year: "Second Year B.Tech",
+        bio: "A second-year Artificial Intelligence & Machine Learning student passionate about building practical AI systems, computer vision applications, intelligent interfaces, and experimental software projects."
+      },
+      skills: [
+        { name: "Python", category: "Programming", level: "85%", status: "Active", projects: ["Hand Recognition Mouse", "Volume Control"] },
+        { name: "OpenCV", category: "Computer Vision", level: "82%", status: "Active", projects: ["Hand Recognition Mouse", "Volume Control"] },
+        { name: "Hand Tracking", category: "Computer Vision", level: "80%", status: "Active", projects: ["Hand Recognition Mouse"] },
+        { name: "SAM (Segment Anything)", category: "Computer Vision", level: "75%", status: "Exploring", projects: ["Volume Control"] },
+        { name: "C", category: "Programming", level: "70%", status: "Foundational", projects: ["Academic Logic"] },
+        { name: "JavaScript", category: "Web Development", level: "70%", status: "Active", projects: ["Smart Bus Concept"] },
+        { name: "HTML / CSS", category: "Web Development", level: "80%", status: "Active", projects: ["Portfolio UI"] },
+        { name: "React / Next.js", category: "Web Development", level: "65%", status: "Learning", projects: ["Web Applications"] },
+        { name: "Git / GitHub", category: "Developer Tools", level: "75%", status: "Active", projects: ["Version Control"] },
+        { name: "VS Code", category: "Developer Tools", level: "85%", status: "Active", projects: ["IDE Workflow"] }
+      ],
+      projects: [
+        {
+          id: "p1",
+          name: "Hand Recognition Mouse",
+          category: "Computer Vision",
+          tech: ["Python", "OpenCV", "Hand Tracking", "Computer Vision"],
+          status: "Completed Prototype",
+          shortDesc: "A computer vision-based system allowing users to control mouse interactions using camera-captured hand gestures.",
+          problem: "Traditional hardware mice lack touchless flexibility for physical interactions or presentation modes.",
+          solution: "Captures video stream, detects hand landmarks in real time via OpenCV, and maps spatial gestures to OS mouse click and movement events.",
+          metrics: "Simulated Latency: 22ms | Accuracy: ~94% | Camera: 30 FPS",
+          github: "https://github.com/yourusername/hand-recognition-mouse"
+        },
+        {
+          id: "p2",
+          name: "Vision-Based Volume Control",
+          category: "Computer Vision",
+          tech: ["Python", "OpenCV", "SAM", "Gesture Processing"],
+          status: "Experimental Prototype",
+          shortDesc: "Enables touchless system volume control by measuring visual distance metrics between hand landmarks.",
+          problem: "Creating intuitive non-contact system controls for hygienic or hands-free computing environments.",
+          solution: "Calculates euclidean pixel distance between recognized finger tips in camera frames, converting spatial measurements into audio gain levels.",
+          metrics: "Detection Confidence: 94% | Mapped Range: 0-100% | FPS: 28 FPS",
+          github: "https://github.com/yourusername/vision-volume-control"
+        },
+        {
+          id: "p3",
+          name: "AI Architectural Generator",
+          category: "AI / ML",
+          tech: ["Python", "Model Synthesis", "Experimental AI"],
+          status: "Placeholder / Concept",
+          shortDesc: "An experimental concept exploring spatial synthesis of 3D architectural representations from 2D floorplan inputs.",
+          problem: "Automating initial architectural structural prototyping using multi-agent generative systems.",
+          solution: "Conceptual pipeline evaluating vector boundary parsing and automated spatial mesh creation.",
+          metrics: "Status: Conceptual Exploration Stage",
+          github: "https://github.com/yourusername/ai-architecture-gen"
+        },
+        {
+          id: "p4",
+          name: "Interactive Smart Bus System",
+          category: "Web",
+          tech: ["JavaScript", "HTML/CSS", "UI Architecture"],
+          status: "Placeholder / Concept",
+          shortDesc: "A web-based transportation interface concept featuring passenger tracking, QR interaction, and real-time occupancy.",
+          problem: "Improving urban transit communication through unified interactive web portals.",
+          solution: "Lightweight front-end prototype rendering route dynamics and occupancy status.",
+          metrics: "Simulated Nodes: 12 Routes | UI Latency: Minimal",
+          github: "https://github.com/yourusername/smart-bus-concept"
+        }
+      ]
+    };
+
+    /* Active Project State & Stack Ordering Engine */
+    let activeProjectId = "p1";
+    let stackOrder = ["p1", "p2", "p3", "p4"];
+    let currentFilter = "All";
+
+    /* ==========================================================================
+       2. SKILLS MATRIX RENDER & INSPECTION ENGINE
+       ========================================================================== */
+    function renderSkillsMatrix() {
+      const container = document.getElementById('skills-matrix-container');
+      const categories = [...new Set(portfolioData.skills.map(s => s.category))];
+      
+      let html = '';
+      categories.forEach(cat => {
+        html += `
+          <div class="skill-category">
+            <p class="type-micro">// CATEGORY: ${cat.toUpperCase()}</p>
+            <div class="skill-nodes-grid">
+        `;
+        
+        portfolioData.skills.filter(s => s.category === cat).forEach(skill => {
+          html += `
+            <div class="skill-node" onclick="inspectSkill('${skill.name}', this)">
+              <div style="font-size: 0.85rem; font-weight: 500; color: var(--line-primary);">${skill.name}</div>
+              <div class="type-micro" style="margin-top:0.2rem;">${skill.status}</div>
+            </div>
+          `;
+        });
+
+        html += `</div></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function inspectSkill(skillName, element) {
+      document.querySelectorAll('.skill-node').forEach(el => el.classList.remove('selected'));
+      if(element) element.classList.add('selected');
+
+      const skill = portfolioData.skills.find(s => s.name === skillName);
+      if(!skill) return;
+
+      document.getElementById('inspect-name').textContent = skill.name;
+      document.getElementById('inspect-cat').textContent = `CATEGORY: ${skill.category.toUpperCase()} // STATUS: ${skill.status.toUpperCase()}`;
+      document.getElementById('inspect-desc').textContent = `Skill integrated within Shreeyam's B.Tech AIML development workflow. Current proficiency baseline estimated at ${skill.level}.`;
+      
+      document.getElementById('inspect-metrics').style.display = 'block';
+      document.getElementById('inspect-bar').style.width = skill.level;
+
+      const projContainer = document.getElementById('inspect-projects');
+      projContainer.innerHTML = skill.projects.map(p => `<span class="tech-tag">${p}</span>`).join('');
+    }
+
+    /* ==========================================================================
+       3. CONNECTED PHYSICAL FOLDER STACK ENGINE (PATCH V6)
+       ========================================================================== */
+    function getFilteredProjects(categoryFilter = 'All') {
+      if (categoryFilter === 'All') return portfolioData.projects;
+      return portfolioData.projects.filter(p => p.category === categoryFilter || p.tech.includes(categoryFilter));
+    }
+
+    function selectProject(selectedId) {
+      const filtered = getFilteredProjects(currentFilter);
+      const filteredIds = filtered.map(p => p.id);
+
+      if (!filteredIds.includes(selectedId)) return;
+
+      const activeId = activeProjectId;
+
+      if (selectedId !== activeId) {
+        // Physical Folder Stack Reordering Algorithm:
+        // 1. Selected folder comes directly to Front (depth 0).
+        // 2. Previous Active folder goes directly to Back (final depth).
+        // 3. Other folders retain their relative placement.
+        const remaining = stackOrder.filter(id => id !== selectedId && id !== activeId && filteredIds.includes(id));
+        const newFilteredStack = [selectedId, ...remaining, activeId];
+        
+        const nonFilteredIds = stackOrder.filter(id => !filteredIds.includes(id));
+        stackOrder = [...newFilteredStack, ...nonFilteredIds];
+        
+        activeProjectId = selectedId;
+      }
+
+      renderProjectStack();
+      renderActiveProjectDetail();
+    }
+
+    function renderProjectStack(categoryFilter = currentFilter) {
+      currentFilter = categoryFilter;
+      const stackContainer = document.getElementById('projects-stack-container');
+      const filtered = getFilteredProjects(categoryFilter);
+
+      document.getElementById('project-count-label').textContent = `SHOWING ${filtered.length} PROJECT(S)`;
+
+      if (filtered.length === 0) {
+        stackContainer.innerHTML = `<p class="type-body">No projects matching selected vector.</p>`;
+        document.getElementById('active-project-detail').innerHTML = `<p class="type-body">Select a valid project filter above.</p>`;
+        return;
+      }
+
+      const filteredIds = filtered.map(p => p.id);
+      let activeStack = stackOrder.filter(id => filteredIds.includes(id));
+
+      if (activeStack.length === 0) return;
+
+      if (!activeStack.includes(activeProjectId)) {
+        activeProjectId = activeStack[0];
+      }
+
+      if (activeStack[0] !== activeProjectId) {
+        const remaining = activeStack.filter(id => id !== activeProjectId);
+        activeStack = [activeProjectId, ...remaining];
+      }
+
+      let html = '';
+      activeStack.forEach((id, depth) => {
+        const proj = portfolioData.projects.find(p => p.id === id);
+        if (!proj) return;
+
+        const isActive = id === activeProjectId;
+        const totalCount = activeStack.length;
+
+        html += `
+          <button 
+            class="project-folder depth-${depth} ${isActive ? 'active' : ''}" 
+            onclick="selectProject('${proj.id}')"
+            aria-label="Project Folder ${proj.name}"
+            data-id="${proj.id}"
+          >
+            <div class="project-folder-inner">
+              <div class="folder-header">
+                <div class="folder-tab-label">
+                  <svg width="10" height="10" viewBox="0 0 100 100"><use href="#sigil-core"/></svg>
+                  <span>${isActive ? 'ACTIVE RELIC' : `FOLDER 0${totalCount - depth}`}</span>
+                </div>
+                <div class="folder-title">${proj.name}</div>
+                ${isActive ? `<div class="folder-short-desc">${proj.shortDesc}</div>` : ''}
+              </div>
+              <div class="folder-active-tags tag-cloud" style="margin: 0;">
+                <span class="tech-tag" style="border-color: var(--line-secondary);">${proj.category}</span>
+              </div>
+            </div>
+          </button>
+        `;
+      });
+
+      stackContainer.innerHTML = html;
+      renderActiveProjectDetail();
+    }
+
+    function renderActiveProjectDetail() {
+      const detailContainer = document.getElementById('active-project-detail');
+      const p = portfolioData.projects.find(item => item.id === activeProjectId);
+
+      if (!p) return;
+
+      detailContainer.innerHTML = `
+        <svg class="frame-corner top-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner top-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner bottom-left" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+        <svg class="frame-corner bottom-right" viewBox="0 0 16 16"><use href="#sigil-corner"/></svg>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 0.8rem;">
+          <p class="type-micro">${p.category.toUpperCase()} // ${p.status.toUpperCase()}</p>
+          <span class="type-micro" style="color: var(--accent-success);">✦ ACTIVE SPECIFICATION</span>
+        </div>
+
+        <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--line-primary);">${p.name}</h3>
+
+        <p class="type-body" style="margin-bottom: 1rem;"><strong>Overview:</strong> ${p.shortDesc}</p>
+        <p class="type-body" style="margin-bottom: 1rem;"><strong>Problem Statement:</strong> ${p.problem}</p>
+        <p class="type-body" style="margin-bottom: 1rem;"><strong>Architectural Solution:</strong> ${p.solution}</p>
+        
+        <p class="type-micro" style="color: var(--accent-success); margin-bottom: 1rem;">
+          TELEMETRY: ${p.metrics}
+        </p>
+
+        <div class="tag-cloud" style="margin-bottom: 1.5rem;">
+          ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="sigil-btn sigil-btn-primary" onclick="openProjectModal('${p.id}')">
+            <span>Deep Inspection</span>
+          </button>
+          <a href="${p.github}" target="_blank" class="sigil-btn">
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      `;
+    }
+
+    function filterProjects(cat, btn) {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjectStack(cat);
+    }
+
+    function openProjectModal(id) {
+      const p = portfolioData.projects.find(item => item.id === id);
+      if(!p) return;
+
+      document.getElementById('modal-title').textContent = p.name;
+      document.getElementById('modal-cat').textContent = `// ${p.category.toUpperCase()} // ${p.status.toUpperCase()}`;
+      document.getElementById('modal-github').href = p.github;
+
+      document.getElementById('modal-content').innerHTML = `
+        <p><strong>Overview:</strong> ${p.shortDesc}</p>
+        <p style="margin-top: 0.8rem;"><strong>Problem Statement:</strong> ${p.problem}</p>
+        <p style="margin-top: 0.8rem;"><strong>Architectural Solution:</strong> ${p.solution}</p>
+        <p style="margin-top: 0.8rem; font-family: var(--font-mono); color: var(--accent-success);"><strong>Telemetry Metrics [Demo]:</strong> ${p.metrics}</p>
+        <div class="tag-cloud" style="margin-top: 1rem;">
+          ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+        </div>
+      `;
+
+      document.getElementById('project-modal').classList.add('is-open');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('project-modal').classList.remove('is-open');
+    }
+
+    /* ==========================================================================
+       4. INTERACTIVE TERMINAL ENGINE (CLI)
+       ========================================================================== */
+    function handleTerminalCommand(e) {
+      if(e.key === 'Enter') {
+        const input = e.target.value.trim().toLowerCase();
+        const body = document.getElementById('terminal-body');
+        
+        const cmdLine = document.createElement('div');
+        cmdLine.className = 'terminal-line';
+        cmdLine.innerHTML = `<span style="color: var(--line-primary);">&gt; ${input}</span>`;
+        body.appendChild(cmdLine);
+
+        const resLine = document.createElement('div');
+        resLine.className = 'terminal-line';
+        resLine.style.color = 'var(--text-muted)';
+
+        switch(input) {
+          case 'help':
+            resLine.innerHTML = 'Available commands: [about] [projects] [skills] [contact] [github] [clear]';
+            break;
+          case 'about':
+            resLine.innerHTML = `${portfolioData.personal.name} — ${portfolioData.personal.title} at ${portfolioData.personal.institution}.`;
+            break;
+          case 'projects':
+            resLine.innerHTML = 'Projects: ' + portfolioData.projects.map(p => p.name).join(' | ');
+            break;
+          case 'skills':
+            resLine.innerHTML = 'Core Tech: Python, OpenCV, Hand Tracking, JavaScript, React, C, Git.';
+            break;
+          case 'contact':
+            resLine.innerHTML = 'Contact: your-email@example.com (Placeholder)';
+            break;
+          case 'github':
+            resLine.innerHTML = 'GitHub: https://github.com/yourusername (Placeholder)';
+            break;
+          case 'clear':
+            body.innerHTML = '';
+            e.target.value = '';
+            return;
+          default:
+            resLine.innerHTML = `Command not recognized: '${input}'. Type 'help' for instructions.`;
+        }
+
+        body.appendChild(resLine);
+        body.scrollTop = body.scrollHeight;
+        e.target.value = '';
+      }
+    }
+
+    /* ==========================================================================
+       5. PARALLAX, TOASTS, COMMAND PALETTE, FORM
+       ========================================================================== */
+    const sigilContainer = document.getElementById('sigil-container');
+    const heroSigilSvg = document.getElementById('hero-sigil-svg');
+    const layerOuter = document.getElementById('sigil-layer-outer');
+    const layerInner = document.getElementById('sigil-layer-inner');
+
+    let mouseX = 0, mouseY = 0;
+    let targetTiltX = 0, targetTiltY = 0;
+    let currentTiltX = 0, currentTiltY = 0;
+
+    if (sigilContainer) {
+      document.addEventListener('mousemove', (e) => {
+        const { innerWidth, innerHeight } = window;
+        mouseX = (e.clientX / innerWidth) * 2 - 1;
+        mouseY = (e.clientY / innerHeight) * 2 - 1;
+
+        targetTiltX = mouseY * 25;
+        targetTiltY = -mouseX * 25;
+      });
+    }
+
+    function updateParallax() {
+      const scrollY = window.scrollY;
+
+      const translateY = scrollY * 0.35;
+      const rotationScrollOuter = scrollY * 0.2;
+      const rotationScrollInner = -scrollY * 0.15;
+      const scaleScroll = Math.max(0.6, 1 - scrollY * 0.0008);
+      const opacityScroll = Math.max(0, 1 - scrollY / 500);
+
+      currentTiltX += (targetTiltX - currentTiltX) * 0.08;
+      currentTiltY += (targetTiltY - currentTiltY) * 0.08;
+
+      if (heroSigilSvg) {
+        heroSigilSvg.style.transform = `translateY(${translateY}px) rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg) scale(${scaleScroll})`;
+        heroSigilSvg.style.opacity = opacityScroll;
+      }
+
+      if (layerOuter) layerOuter.style.transform = `rotate(${rotationScrollOuter}deg)`;
+      if (layerInner) layerInner.style.transform = `rotate(${rotationScrollInner}deg)`;
+
+      requestAnimationFrame(updateParallax);
+    }
+
+    requestAnimationFrame(updateParallax);
+
+    function triggerToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast-item`;
+      toast.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 100 100" style="flex-shrink:0; color: currentColor;">
+          <use href="#sigil-core"/>
+        </svg>
+        <div>
+          <p class="type-micro">${type.toUpperCase()} SIGNAL</p>
+          <p style="font-size: 0.8rem; color: var(--line-primary);">${message}</p>
+        </div>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+    }
+
+    const cmdPalette = document.getElementById('cmd-palette');
+    document.getElementById('cmd-toggle').addEventListener('click', () => {
+      cmdPalette.classList.toggle('is-open');
+      if (cmdPalette.classList.contains('is-open')) document.getElementById('cmd-input').focus();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        cmdPalette.classList.toggle('is-open');
+        if (cmdPalette.classList.contains('is-open')) document.getElementById('cmd-input').focus();
+      }
+      if (e.key === 'Escape') {
+        cmdPalette.classList.remove('is-open');
+        closeProjectModal();
+      }
+    });
+
+    function navigateTo(hash) {
+      cmdPalette.classList.remove('is-open');
+      window.location.hash = hash;
+    }
+
+    function filterCmdResults() {
+      const query = document.getElementById('cmd-input').value.toLowerCase();
+      const items = document.querySelectorAll('#cmd-results li');
+      items.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
+      });
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      triggerToast('Transmission Received. Signal Logged.', 'success');
+      e.target.reset();
+    }
+
+    /* Initialize Application */
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSkillsMatrix();
+      renderProjectStack('All');
+    });
+  </script>
+</body>
+</html>
